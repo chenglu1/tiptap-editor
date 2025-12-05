@@ -11,7 +11,7 @@
     }
   },
   "scripts": {
-    "build": "tsc && tsc-alias",
+    "build": "tsc && tsc-alias && powershell -Command \"Get-ChildItem -Path src -Recurse -Filter *.scss | ForEach-Object { $dest = $_.FullName.Replace('src', 'dist'); New-Item -ItemType File -Path $dest -Force | Out-Null; Copy-Item $_.FullName -Destination $dest -Force }\"",
     "dev": "tsc --watch"
   },
   "peerDependencies": {

@@ -1,6 +1,6 @@
 // Simple Editor Styles
-@import './styles/variables';
-@import './styles/keyframe-animations';
+@use './styles/variables';
+@use './styles/keyframe-animations';
 
 .simple-editor-wrapper {
   width: 100%;

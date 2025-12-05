@@ -19,7 +19,7 @@ import { Button } from "@tiptap-editor/ui-primitives"
 import { Badge } from "@tiptap-editor/ui-primitives"
 
 // --- Styles ---
-import "../color-highlight-button/color-highlight-button.scss"
+import "./color-highlight-button.scss"
 
 export interface ColorHighlightButtonProps
   extends Omit<ButtonProps, "type">,
