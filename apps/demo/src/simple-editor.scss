@@ -1,0 +1,28 @@
+// Simple Editor Styles
+@import './styles/variables';
+@import './styles/keyframe-animations';
+
+.simple-editor-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.simple-editor {
+  min-height: 400px;
+  outline: none;
+  padding: 1rem;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 8px;
+  background: var(--background-color, #ffffff);
+  
+  &:focus {
+    border-color: var(--primary-color, #3b82f6);
+  }
+}
+
+.simple-editor-content {
+  flex: 1;
+  overflow-y: auto;
+}

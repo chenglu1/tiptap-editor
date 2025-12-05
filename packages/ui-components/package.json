@@ -1,0 +1,44 @@
+{
+  "name": "@tiptap-editor/ui-components",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "dev": "tsc --watch"
+  },
+  "peerDependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "@tiptap/react": "^3.9.0",
+    "@tiptap/core": "^3.9.0"
+  },
+  "dependencies": {
+    "@tiptap/extension-table": "^3.9.1",
+    "@tiptap/extension-highlight": "^3.9.0",
+    "@tiptap/extension-bullet-list": "^3.9.0",
+    "@tiptap/extension-ordered-list": "^3.9.0",
+    "@tiptap/extension-link": "^3.9.0",
+    "@tiptap/extension-text-align": "^3.9.0",
+    "@tiptap-editor/ui-primitives": "workspace:*",
+    "@tiptap-editor/hooks": "workspace:*",
+    "@tiptap-editor/nodes": "workspace:*",
+    "react-hotkeys-hook": "^5.2.1"
+  },
+  "devDependencies": {
+    "@tiptap/react": "^3.9.0",
+    "@tiptap/core": "^3.9.0",
+    "@tiptap/pm": "^3.9.0",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "typescript": "~5.9.3",
+    "tsc-alias": "^1.8.16"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "@tiptap-editor/ui-primitives",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": {
+      "import": "./dist/*/index.js",
+      "types": "./dist/*/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "dev": "tsc --watch"
+  },
+  "peerDependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^2.1.16",
+    "@radix-ui/react-popover": "^1.1.15",
+    "@tiptap-editor/hooks": "workspace:*",
+    "@floating-ui/react": "^0.27.16"
+  },
+  "devDependencies": {
+    "@tiptap/react": "^3.9.0",
+    "@tiptap/core": "^3.9.0",
+    "@tiptap/pm": "^3.9.0",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "typescript": "~5.9.3",
+    "tsc-alias": "^1.8.16"
+  }
+}
