@@ -79,9 +79,9 @@ export function canToggleList(
   if (!turnInto) {
     switch (type) {
       case "bulletList":
-        return // @ts-ignoreeditor.can().toggleBulletListeditor.can().toggleBulletList()
+        return editor.can().toggleBulletList()
       case "orderedList":
-        return // @ts-ignoreeditor.can().toggleOrderedListeditor.can().toggleOrderedList()
+        return editor.can().toggleOrderedList()
       case "taskList":
         return editor.can().toggleList("taskList", "taskItem")
       default:
@@ -107,9 +107,9 @@ export function canToggleList(
   // or we can clear formatting/nodes to arrive at a list.
   switch (type) {
     case "bulletList":
-      return // @ts-ignoreeditor.can().toggleBulletListeditor.can().toggleBulletList() || editor.can().clearNodes()
+      return editor.can().toggleBulletList() || editor.can().clearNodes()
     case "orderedList":
-      return // @ts-ignoreeditor.can().toggleOrderedListeditor.can().toggleOrderedList() || editor.can().clearNodes()
+      return editor.can().toggleOrderedList() || editor.can().clearNodes()
     case "taskList":
       return (
         editor.can().toggleList("taskList", "taskItem") ||

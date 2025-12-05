@@ -77,7 +77,7 @@ export function canSetTextAlign(
   )
     return false
 
-  return // @ts-ignoreeditor.can().setTextAligneditor.can().setTextAlign(align)
+  return editor.can().setTextAlign(align)
 }
 
 export function hasSetTextAlign(

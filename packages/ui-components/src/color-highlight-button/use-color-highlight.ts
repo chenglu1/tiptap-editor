@@ -147,7 +147,8 @@ export function canColorHighlight(
     if (!isExtensionAvailable(editor, ["nodeBackground"])) return false
 
     try {
-      // @ts-ignorereturn editor.can().toggleNodeBackgroundColorreturn editor.can()// @ts-ignore.toggleNodeBackgroundColor(.toggleNodeBackgroundColor("test")
+      // For node background mode, always return true if the extension is available
+      return true
     } catch {
       return false
     }

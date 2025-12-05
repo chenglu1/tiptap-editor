@@ -28,11 +28,17 @@
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./src/*"
-      ]
+        "./apps/demo/src/*"
+      ],
+      "@tiptap-editor/ui-primitives": ["./packages/ui-primitives/src"],
+      "@tiptap-editor/nodes": ["./packages/nodes/src"],
+      "@tiptap-editor/ui-components": ["./packages/ui-components/src"],
+      "@tiptap-editor/hooks": ["./packages/hooks/src"],
+      "@tiptap-editor/utils": ["./packages/utils/src"]
     }
   },
   "include": [
-    "src"
+    "apps/demo/src/**/*",
+    "packages/**/src/**/*"
   ]
 }
