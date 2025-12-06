@@ -2,54 +2,118 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 1200px;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+}
+
+.markdown-parser-demo .control-group {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--tt-gray-light-200);
+  margin-bottom: 1rem;
+}
+
+.markdown-parser-demo .button-group {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.markdown-parser-demo .button-group button {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--tt-gray-light-300);
+  background: white;
+  color: var(--tt-gray-light-900);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.markdown-parser-demo .button-group button:hover:not(:disabled) {
+  background: var(--tt-gray-light-50);
+  border-color: var(--tt-gray-light-400);
+}
+
+.markdown-parser-demo .button-group button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .markdown-parser-demo .split {
   display: flex;
-  flex: 1 1 auto;
-  gap: 1rem;
-  overflow: auto;
-  padding: 0 1.5rem 1rem;
+  flex: 1;
+  gap: 1.5rem;
+  overflow: hidden;
+  min-height: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .markdown-parser-demo .split {
+    flex-direction: column;
+  }
 }
 
 .markdown-parser-demo .input-panel,
 .markdown-parser-demo .editor-panel {
-  flex: 1 1 50%;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .markdown-parser-demo .panel-label {
   font-weight: 600;
-  color: #374151;
+  color: var(--tt-gray-light-700);
   font-size: 0.875rem;
+  flex-shrink: 0;
 }
 
 .markdown-parser-demo .markdown-input {
-  flex: 1 1 auto;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
+  flex: 1;
+  border: 1px solid var(--tt-gray-light-300);
+  border-radius: 8px;
   padding: 1rem;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.6;
   resize: none;
   outline: none;
+  background: var(--tt-bg-color);
+  color: var(--tt-theme-text);
+  min-height: 0;
 }
 
 .markdown-parser-demo .markdown-input:focus {
-  border-color: #3b82f6;
+  border-color: var(--tt-primary-color);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .markdown-parser-demo .editor-container {
-  flex: 1 1 auto;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
-  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--tt-gray-light-300);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--tt-bg-color);
+  min-height: 0;
+}
+
+.markdown-parser-demo .editor-container .tiptap-toolbar {
+  border-bottom: 1px solid var(--tt-gray-light-200);
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+.markdown-parser-demo .editor-container .tiptap {
+  flex: 1;
   overflow: auto;
+  padding: 1rem;
 }
 
 .markdown-parser-demo .editor-toolbar {
@@ -74,9 +138,10 @@
   background: #fee2e2;
   border: 1px solid #fecaca;
   color: #dc2626;
-  padding: 0.75rem;
-  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
   font-size: 0.875rem;
+  margin: 0 0 1rem 0;
 }
 
 .markdown-parser-demo .json-preview {
