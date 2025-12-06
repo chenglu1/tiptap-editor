@@ -14,6 +14,7 @@ import { Highlight } from "@tiptap/extension-highlight"
 import { Subscript } from "@tiptap/extension-subscript"
 import { Superscript } from "@tiptap/extension-superscript"
 import { Selection } from "@tiptap/extensions"
+import { Table, TableRow, TableHeader, TableCell } from "@tiptap/extension-table"
 // --- UI Primitives ---
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Spacer } from "@/components/tiptap-ui-primitive/spacer"
@@ -36,13 +37,13 @@ import "@/components/tiptap-node/paragraph-node/paragraph-node.scss"
 
 // --- Tiptap UI ---
 import { HeadingDropdownMenu } from "@/components/tiptap-ui/heading-dropdown-menu"
-import { TableButton } from "@/components/tiptap-ui/table-button/table-button"
+import { TableDropdownMenu } from "@/components/tiptap-ui/table-dropdown-menu"
+import { TableFloatingToolbar } from "@/components/tiptap-ui/table-floating-toolbar"
 import { ImageUploadButton } from "@/components/tiptap-ui/image-upload-button"
 import { ListDropdownMenu } from "@/components/tiptap-ui/list-dropdown-menu"
 import { BlockquoteButton } from "@/components/tiptap-ui/blockquote-button"
 import { CodeBlockButton } from "@/components/tiptap-ui/code-block-button"
 
-import { TableFloatingToolbar } from "@/components/tiptap-ui/table-floating-toolbar/table-floating-toolbar";
 import {
   ColorHighlightPopover,
   ColorHighlightPopoverContent,
@@ -106,7 +107,7 @@ export const MainToolbarContent = ({
         />
         <BlockquoteButton />
         <CodeBlockButton />
-        <TableButton />
+        <TableDropdownMenu />
       </ToolbarGroup>
 
       <ToolbarSeparator />
@@ -226,6 +227,12 @@ export function SimpleEditor() {
       Superscript,
       Subscript,
       Selection,
+      Table.configure({
+        resizable: true,
+      }),
+      TableRow,
+      TableHeader,
+      TableCell,
       ImageUploadNode.configure({
         accept: "image/*",
         maxSize: MAX_FILE_SIZE,
@@ -280,8 +287,9 @@ export function SimpleEditor() {
           role="presentation"
           className="simple-editor-content"
         />
-        {/* 集成表格浮动工具栏 */}
-        <TableFloatingToolbar editor={editor} />
+
+        {editor && <TableFloatingToolbar editor={editor} />}
+
       </EditorContext.Provider>
     </div>
   )
