@@ -104,6 +104,13 @@
   min-height: 0;
 }
 
+.markdown-parser-demo .editor-container .simple-editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
 .markdown-parser-demo .editor-container .tiptap-toolbar {
   border-bottom: 1px solid var(--tt-gray-light-200);
   border-radius: 0;
@@ -113,7 +120,8 @@
 .markdown-parser-demo .editor-container .tiptap {
   flex: 1;
   overflow: auto;
-  padding: 1rem;
+  padding: 1.5rem;
+  min-height: 0;
 }
 
 .markdown-parser-demo .editor-toolbar {
