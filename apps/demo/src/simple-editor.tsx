@@ -18,24 +18,36 @@ import { Button, Spacer, Toolbar, ToolbarGroup, ToolbarSeparator } from "@tiptap
 // --- Tiptap Nodes ---
 import { ImageUploadNode, HorizontalRule } from "@tiptap-editor/nodes"
 
-// --- Tiptap UI Components ---
+// --- Tiptap UI Components (Structure Elements) ---
 import {
   HeadingDropdownMenu,
-  TableButton,
-  ImageUploadButton,
-  ListDropdownMenu,
   BlockquoteButton,
   CodeBlockButton,
-  TableFloatingToolbar,
+  TableButton,
+  ListDropdownMenu,
+} from "@tiptap-editor/ui-components"
+
+// --- Tiptap UI Components (Text Formatting) ---
+import {
+  MarkButton,
+  TextAlignButton,
+  UndoRedoButton,
+} from "@tiptap-editor/ui-components"
+
+// --- Tiptap UI Components (Popovers & Complex Controls) ---
+import {
   ColorHighlightPopover,
   ColorHighlightPopoverContent,
   ColorHighlightPopoverButton,
   LinkPopover,
   LinkContent,
   LinkButton,
-  MarkButton,
-  TextAlignButton,
-  UndoRedoButton,
+  ImageUploadButton,
+  TableFloatingToolbar,
+} from "@tiptap-editor/ui-components"
+
+// --- Tiptap Icons ---
+import {
   ArrowLeftIcon,
   HighlighterIcon,
   LinkIcon,
@@ -52,9 +64,35 @@ import { handleImageUpload, MAX_FILE_SIZE } from "@tiptap-editor/utils"
 
 // --- Styles ---
 import "./simple-editor.scss"
+// Import all node styles
+import "@tiptap-editor/nodes/blockquote-node/blockquote-node.scss"
+import "@tiptap-editor/nodes/code-block-node/code-block-node.scss"
+import "@tiptap-editor/nodes/heading-node/heading-node.scss"
+import "@tiptap-editor/nodes/horizontal-rule-node/horizontal-rule-node.scss"
+import "@tiptap-editor/nodes/image-node/image-node.scss"
+import "@tiptap-editor/nodes/image-upload-node/image-upload-node.scss"
+import "@tiptap-editor/nodes/list-node/list-node.scss"
+import "@tiptap-editor/nodes/paragraph-node/paragraph-node.scss"
+// Import UI components styles
+import "@tiptap-editor/ui-components/color-highlight-button/color-highlight-button.scss"
+// Import UI primitives styles (only those with SCSS files)
+import "@tiptap-editor/ui-primitives/badge/badge.scss"
+import "@tiptap-editor/ui-primitives/button/button.scss"
+import "@tiptap-editor/ui-primitives/card/card.scss"
+import "@tiptap-editor/ui-primitives/dropdown-menu/dropdown-menu.scss"
+import "@tiptap-editor/ui-primitives/input/input.scss"
+import "@tiptap-editor/ui-primitives/popover/popover.scss"
+import "@tiptap-editor/ui-primitives/separator/separator.scss"
+import "@tiptap-editor/ui-primitives/toolbar/toolbar.scss"
+import "@tiptap-editor/ui-primitives/tooltip/tooltip.scss"
 
-import { mdContent as content} from "./data/content"
+// --- Content ---
+import { mdContent as content } from "./data/content"
 
+/**
+ * Main toolbar content - displays all editing tools
+ * Adapts between desktop and mobile layouts
+ */
 export const MainToolbarContent = ({
   onHighlighterClick,
   onLinkClick,
@@ -68,6 +106,7 @@ export const MainToolbarContent = ({
     <>
       <Spacer />
 
+      {/* History Controls */}
       <ToolbarGroup>
         <UndoRedoButton action="undo" />
         <UndoRedoButton action="redo" />
@@ -75,12 +114,10 @@ export const MainToolbarContent = ({
 
       <ToolbarSeparator />
 
+      {/* Block-level Elements */}
       <ToolbarGroup>
         <HeadingDropdownMenu levels={[1, 2, 3, 4]} portal={isMobile} />
-        <ListDropdownMenu
-          types={["bulletList", "orderedList", "taskList"]}
-          portal={isMobile}
-        />
+        <ListDropdownMenu types={["bulletList", "orderedList", "taskList"]} portal={isMobile} />
         <BlockquoteButton />
         <CodeBlockButton />
         <TableButton />
@@ -88,12 +125,19 @@ export const MainToolbarContent = ({
 
       <ToolbarSeparator />
 
+      {/* Inline Text Formatting */}
       <ToolbarGroup>
         <MarkButton type="bold" />
         <MarkButton type="italic" />
         <MarkButton type="strike" />
         <MarkButton type="code" />
         <MarkButton type="underline" />
+      </ToolbarGroup>
+
+      <ToolbarSeparator />
+
+      {/* Advanced Inline Formatting */}
+      <ToolbarGroup>
         {!isMobile ? (
           <ColorHighlightPopover />
         ) : (
@@ -104,6 +148,7 @@ export const MainToolbarContent = ({
 
       <ToolbarSeparator />
 
+      {/* Vertical Alignment */}
       <ToolbarGroup>
         <MarkButton type="superscript" />
         <MarkButton type="subscript" />
@@ -111,6 +156,7 @@ export const MainToolbarContent = ({
 
       <ToolbarSeparator />
 
+      {/* Paragraph Alignment */}
       <ToolbarGroup>
         <TextAlignButton align="left" />
         <TextAlignButton align="center" />
@@ -120,12 +166,14 @@ export const MainToolbarContent = ({
 
       <ToolbarSeparator />
 
+      {/* Media & Attachments */}
       <ToolbarGroup>
         <ImageUploadButton text="Add" />
       </ToolbarGroup>
 
       <Spacer />
 
+      {/* Theme Toggle */}
       {isMobile && <ToolbarSeparator />}
 
       <ToolbarGroup>

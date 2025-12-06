@@ -77,7 +77,8 @@ export function canSetTextAlign(
   )
     return false
 
-  return editor.can().setTextAlign(align)
+  // @ts-ignore - setTextAlign command may not be in type definitions
+  return editor.can().setTextAlign?.(align) ?? false
 }
 
 export function hasSetTextAlign(

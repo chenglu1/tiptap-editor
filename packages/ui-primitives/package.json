@@ -12,7 +12,20 @@
     "./*": {
       "import": "./dist/*/index.js",
       "types": "./dist/*/index.d.ts"
-    }
+    },
+    "./badge/badge.scss": "./src/badge/badge.scss",
+    "./badge/badge-colors.scss": "./src/badge/badge-colors.scss",
+    "./badge/badge-group.scss": "./src/badge/badge-group.scss",
+    "./button/button.scss": "./src/button/button.scss",
+    "./button/button-colors.scss": "./src/button/button-colors.scss",
+    "./button/button-group.scss": "./src/button/button-group.scss",
+    "./card/card.scss": "./src/card/card.scss",
+    "./dropdown-menu/dropdown-menu.scss": "./src/dropdown-menu/dropdown-menu.scss",
+    "./input/input.scss": "./src/input/input.scss",
+    "./popover/popover.scss": "./src/popover/popover.scss",
+    "./separator/separator.scss": "./src/separator/separator.scss",
+    "./toolbar/toolbar.scss": "./src/toolbar/toolbar.scss",
+    "./tooltip/tooltip.scss": "./src/tooltip/tooltip.scss"
   },
   "scripts": {
     "build": "tsc && tsc-alias && powershell -Command \"Get-ChildItem -Path src -Recurse -Filter *.scss | ForEach-Object { $dest = $_.FullName.Replace('src', 'dist'); New-Item -ItemType File -Path $dest -Force | Out-Null; Copy-Item $_.FullName -Destination $dest -Force }\"",

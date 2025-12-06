@@ -1,31 +1,27 @@
 import { Button } from "@tiptap-editor/ui-primitives"
-
-// --- Icons ---
 import { MoonStarIcon, SunIcon } from "@tiptap-editor/ui-components"
 import { useEffect, useState } from "react"
 
+const THEME_STORAGE_KEY = "tiptap-editor-theme"
+
 export function ThemeToggle() {
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    // Initialize from localStorage or system preference
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem(THEME_STORAGE_KEY)
+      if (stored) return stored === "dark"
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+    }
+    return false
+  })
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-    const handleChange = () => setIsDarkMode(mediaQuery.matches)
-    mediaQuery.addEventListener("change", handleChange)
-    return () => mediaQuery.removeEventListener("change", handleChange)
-  }, [])
-
-  useEffect(() => {
-    const initialDarkMode =
-      !!document.querySelector('meta[name="color-scheme"][content="dark"]') ||
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    setIsDarkMode(initialDarkMode)
-  }, [])
-
-  useEffect(() => {
+    // Update DOM and localStorage when theme changes
     document.documentElement.classList.toggle("dark", isDarkMode)
+    localStorage.setItem(THEME_STORAGE_KEY, isDarkMode ? "dark" : "light")
   }, [isDarkMode])
 
-  const toggleDarkMode = () => setIsDarkMode((isDark) => !isDark)
+  const toggleDarkMode = () => setIsDarkMode((prev) => !prev)
 
   return (
     <Button

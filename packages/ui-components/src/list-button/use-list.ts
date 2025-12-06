@@ -79,11 +79,11 @@ export function canToggleList(
   if (!turnInto) {
     switch (type) {
       case "bulletList":
-        return editor.can().toggleBulletList()
+        return editor.can().wrapInList?.("bulletList") ?? false
       case "orderedList":
-        return editor.can().toggleOrderedList()
+        return editor.can().wrapInList?.("orderedList") ?? false
       case "taskList":
-        return editor.can().toggleList("taskList", "taskItem")
+        return editor.can().toggleList?.("taskList", "taskItem") ?? false
       default:
         return false
     }
@@ -107,12 +107,18 @@ export function canToggleList(
   // or we can clear formatting/nodes to arrive at a list.
   switch (type) {
     case "bulletList":
-      return editor.can().toggleBulletList() || editor.can().clearNodes()
+      return (
+        (editor.can().wrapInList?.("bulletList") ?? false) ||
+        editor.can().clearNodes()
+      )
     case "orderedList":
-      return editor.can().toggleOrderedList() || editor.can().clearNodes()
+      return (
+        (editor.can().wrapInList?.("orderedList") ?? false) ||
+        editor.can().clearNodes()
+      )
     case "taskList":
       return (
-        editor.can().toggleList("taskList", "taskItem") ||
+        (editor.can().toggleList?.("taskList", "taskItem") ?? false) ||
         editor.can().clearNodes()
       )
     default:
@@ -199,10 +205,10 @@ export function toggleList(editor: Editor | null, type: ListType): boolean {
     } else {
       // Wrap in specific list type
       const toggleMap: Record<ListType, () => typeof chain> = {
-        // @ts-ignore
-        bulletList: () => chain.toggleBulletList(),
-        // @ts-ignore
-        orderedList: () => chain.toggleOrderedList(),
+        // Use wrapInList command for bullet lists
+        bulletList: () => (chain.wrapInList("bulletList") as any),
+        // Use wrapInList command for ordered lists
+        orderedList: () => (chain.wrapInList("orderedList") as any),
         taskList: () => chain.toggleList("taskList", "taskItem"),
       }
 

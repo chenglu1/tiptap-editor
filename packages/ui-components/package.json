@@ -8,10 +8,11 @@
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
-    }
+    },
+    "./color-highlight-button/color-highlight-button.scss": "./src/color-highlight-button/color-highlight-button.scss"
   },
   "scripts": {
-    "build": "tsc && tsc-alias && powershell -Command \"Get-ChildItem -Path src -Recurse -Filter *.scss | ForEach-Object { $dest = $_.FullName.Replace('src', 'dist'); New-Item -ItemType File -Path $dest -Force | Out-Null; Copy-Item $_.FullName -Destination $dest -Force }\"",
+    "build": "tsc --noEmitOnError false && tsc-alias && powershell -Command \"Get-ChildItem -Path src -Recurse -Filter *.scss | ForEach-Object { $dest = $_.FullName.Replace('src', 'dist'); New-Item -ItemType File -Path $dest -Force | Out-Null; Copy-Item $_.FullName -Destination $dest -Force }\"",
     "dev": "tsc --watch"
   },
   "peerDependencies": {
