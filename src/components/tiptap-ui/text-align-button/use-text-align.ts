@@ -77,7 +77,19 @@ export function canSetTextAlign(
   )
     return false
 
-  return editor.can().setTextAlign(align)
+  // 检查选区中是否有支持文本对齐的节点
+  const { state } = editor
+  const { selection } = state
+  let hasAlignableNode = false
+
+  state.doc.nodesBetween(selection.from, selection.to, (node) => {
+    if (node.isTextblock && node.type.name !== "codeBlock") {
+      hasAlignableNode = true
+      return false // 找到一个就停止
+    }
+  })
+
+  return hasAlignableNode
 }
 
 export function hasSetTextAlign(

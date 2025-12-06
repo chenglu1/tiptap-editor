@@ -218,7 +218,9 @@ export function SimpleEditor() {
         },
       }),
       HorizontalRule,
-      TextAlign.configure({ types: ["heading", "paragraph"] }),
+      TextAlign.configure({ 
+        types: ["heading", "paragraph"]
+      }),
       TaskList,
       TaskItem.configure({ nested: true }),
       Highlight.configure({ multicolor: true }),
