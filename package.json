@@ -1,24 +1,33 @@
 {
-  "name": "@yourname/tiptap-editor",
+  "name": "@chenglu1/tiptap-editor",
   "private": false,
   "version": "1.0.0",
+  "homepage": "https://github.com/chenglu1/tiptap-editor#readme",
+  "bugs": {
+    "url": "https://github.com/chenglu1/tiptap-editor/issues"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
   "description": "A feature-rich Tiptap editor with Markdown support, tables, images, and more",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
     "./styles": "./dist/style.css",
-    "./dist/style.css": "./dist/style.css"
+    "./dist/style.css": "./dist/style.css",
+    "./examples/*": "./examples/*"
   },
   "files": [
     "dist",
-    "README.md"
+    "examples",
+    "README.md",
+    "LICENSE"
   ],
   "keywords": [
     "tiptap",
@@ -26,9 +35,14 @@
     "rich-text",
     "markdown",
     "react",
-    "wysiwyg"
+    "wysiwyg",
+    "react-editor",
+    "tiptap-react",
+    "markdown-editor",
+    "rich-text-editor",
+    "table-editor"
   ],
-  "author": "Your Name",
+  "author": "chenglu1",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -36,8 +50,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsc --emitDeclarationOnly --declaration --declarationDir dist",
-    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist",
+    "build": "vite build",
+    "build:types": "tsc --project tsconfig.build.json",
     "lint": "eslint .",
     "preview": "vite preview",
     "prepublishOnly": "pnpm run build"

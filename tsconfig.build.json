@@ -9,6 +9,8 @@
     "declaration": true,
     "declarationDir": "./dist",
     "emitDeclarationOnly": true,
+    "noEmit": false,
+    "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
@@ -22,6 +24,8 @@
     "src/App.tsx",
     "src/App.css",
     "src/index.css",
+    "src/components/tiptap-templates/**/*",
+    "examples/**/*",
     "node_modules",
     "dist",
     "**/*.test.ts",

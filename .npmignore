@@ -1,50 +1,28 @@
-# 源代码文件 (只发布构建后的 dist 目录)
+# 源代码 (只发布构建后的 dist)
 src/
-!src/index.ts
 
 # 配置文件
 vite.config.ts
 tsconfig*.json
 eslint.config.js
 
-# 示例和文档
-examples/
+# 开发文件
 .vscode/
-
-# 开发相关文件
+.git/
+.gitignore
 *.log
 *.local
 .DS_Store
 node_modules/
-package-build/
 
-# Git 相关
-.git/
-.gitignore
-
-# 构建临时文件
-.tmp/
-
-# IDE
-.idea/
-*.swp
-*.swo
-
-# 测试文件
-__tests__/
-*.test.ts
-*.test.tsx
-*.spec.ts
-*.spec.tsx
-
-# 开发入口文件
+# 开发入口
 index.html
-src/main.tsx
-src/App.tsx
-src/App.css
-src/index.css
+public/
 
 # 锁文件
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
+
+# 文档 (保留在 GitHub,不发布到包)
+docs/
