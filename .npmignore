@@ -1,0 +1,50 @@
+# 源代码文件 (只发布构建后的 dist 目录)
+src/
+!src/index.ts
+
+# 配置文件
+vite.config.ts
+tsconfig*.json
+eslint.config.js
+
+# 示例和文档
+examples/
+.vscode/
+
+# 开发相关文件
+*.log
+*.local
+.DS_Store
+node_modules/
+package-build/
+
+# Git 相关
+.git/
+.gitignore
+
+# 构建临时文件
+.tmp/
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# 测试文件
+__tests__/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# 开发入口文件
+index.html
+src/main.tsx
+src/App.tsx
+src/App.css
+src/index.css
+
+# 锁文件
+pnpm-lock.yaml
+package-lock.json
+yarn.lock

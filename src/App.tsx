@@ -1,6 +1,6 @@
 import './App.css'
-import { SimpleEditor } from './components/tiptap-templates//simple/simple-editor'
-import MarkdownEditorDemo  from './components/tiptap-templates//simple/markdown-editor'
+import { SimpleEditor } from '../examples/simple-editor'
+import MarkdownEditorDemo  from '../examples/markdown-editor'
 
 function App() {
 

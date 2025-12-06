@@ -18,7 +18,7 @@ import { TextAlign } from "@tiptap/extension-text-align"
 import React, { useState } from 'react'
 
 import { TableFloatingToolbar } from "@/components/tiptap-ui/table-floating-toolbar/table-floating-toolbar";
-import { mdContent } from "@/components/tiptap-templates/simple/data/content"
+import { mdContent } from "./data/content"
 import { MainToolbarContent } from './simple-editor'
 import { ImageUploadNode } from '@/components/tiptap-node/image-upload-node/image-upload-node-extension'
 import { handleImageUpload, MAX_FILE_SIZE } from '@/lib/tiptap-utils'

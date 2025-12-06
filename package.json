@@ -1,19 +1,57 @@
 {
-  "name": "tiptap-editor",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@yourname/tiptap-editor",
+  "private": false,
+  "version": "1.0.0",
+  "description": "A feature-rich Tiptap editor with Markdown support, tables, images, and more",
   "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles": "./dist/style.css",
+    "./dist/style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "tiptap",
+    "editor",
+    "rich-text",
+    "markdown",
+    "react",
+    "wysiwyg"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenglu1/tiptap-editor.git"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build && tsc --emitDeclarationOnly --declaration --declarationDir dist",
+    "build:types": "tsc --emitDeclarationOnly --declaration --declarationDir dist",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "pnpm run build"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "@tiptap/react": "^3.9.0",
+    "@tiptap/core": "^3.13.0"
   },
   "dependencies": {
     "@floating-ui/react": "^0.27.16",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@radix-ui/react-popover": "^1.1.15",
-    "@tiptap/core": "^3.13.0",
     "@tiptap/extension-details": "^3.9.1",
     "@tiptap/extension-highlight": "^3.9.0",
     "@tiptap/extension-horizontal-rule": "^3.9.0",
@@ -30,12 +68,9 @@
     "@tiptap/extensions": "^3.9.0",
     "@tiptap/markdown": "^3.9.1",
     "@tiptap/pm": "^3.13.0",
-    "@tiptap/react": "^3.9.0",
     "@tiptap/starter-kit": "^3.9.0",
     "katex": "^0.16.25",
     "lodash.throttle": "^4.1.1",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
     "react-hotkeys-hook": "^5.2.1"
   },
   "devDependencies": {
