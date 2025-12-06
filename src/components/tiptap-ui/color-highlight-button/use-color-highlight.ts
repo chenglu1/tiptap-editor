@@ -218,7 +218,7 @@ export function shouldShowButton(props: {
 }): boolean {
   const { editor, hideWhenUnavailable, mode } = props
 
-  if (!editor || !editor.isEditable) return false
+  if (!editor) return false
 
   if (mode === "mark") {
     if (!isMarkInSchema("highlight", editor)) return false
@@ -226,8 +226,8 @@ export function shouldShowButton(props: {
     if (!isExtensionAvailable(editor, ["nodeBackground"])) return false
   }
 
-  if (hideWhenUnavailable && !editor.isActive("code")) {
-    return canColorHighlight(editor, mode)
+  if (hideWhenUnavailable) {
+    return editor.isEditable && !editor.isActive("code") && canColorHighlight(editor, mode)
   }
 
   return true

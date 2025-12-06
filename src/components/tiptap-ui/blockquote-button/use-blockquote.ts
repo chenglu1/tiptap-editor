@@ -150,11 +150,11 @@ export function shouldShowButton(props: {
 }): boolean {
   const { editor, hideWhenUnavailable } = props
 
-  if (!editor || !editor.isEditable) return false
+  if (!editor) return false
   if (!isNodeInSchema("blockquote", editor)) return false
 
-  if (hideWhenUnavailable && !editor.isActive("code")) {
-    return canToggleBlockquote(editor)
+  if (hideWhenUnavailable) {
+    return editor.isEditable && !editor.isActive("code") && canToggleBlockquote(editor)
   }
 
   return true

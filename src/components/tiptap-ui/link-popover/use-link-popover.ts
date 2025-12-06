@@ -74,8 +74,8 @@ export function shouldShowLinkButton(props: {
     return false
   }
 
-  if (hideWhenUnavailable && !editor.isActive("code")) {
-    return canSetLink(editor)
+  if (hideWhenUnavailable) {
+    return editor.isEditable && !editor.isActive("code") && canSetLink(editor)
   }
 
   return true
