@@ -2,6 +2,7 @@ import './App.css'
 import { createBrowserRouter, RouterProvider, Link } from 'react-router-dom'
 import { SimpleEditor } from '../examples/simple-editor'
 import MarkdownEditorDemo  from '../examples/markdown-editor'
+import GeminiTest from '../examples/gemini-test.tsx'
 
 // 路由配置
 const routerConfig = [
@@ -14,6 +15,7 @@ const routerConfig = [
           <ul className="nav-list">
             <li><Link to="/simple">Simple Editor</Link></li>
             <li><Link to="/markdown">Markdown Editor</Link></li>
+            <li><Link to="/gemini">Gemini API Test</Link></li>
           </ul>
         </nav>
         <main className="main-content">
@@ -33,6 +35,7 @@ const routerConfig = [
           <ul className="nav-list">
             <li><Link to="/simple">Simple Editor</Link></li>
             <li><Link to="/markdown">Markdown Editor</Link></li>
+            <li><Link to="/gemini">Gemini API Test</Link></li>
           </ul>
         </nav>
         <main className="main-content">
@@ -51,11 +54,30 @@ const routerConfig = [
           <ul className="nav-list">
             <li><Link to="/simple">Simple Editor</Link></li>
             <li><Link to="/markdown">Markdown Editor</Link></li>
+            <li><Link to="/gemini">Gemini API Test</Link></li>
           </ul>
         </nav>
         <main className="main-content">
           <h2>Markdown Editor</h2>
           <MarkdownEditorDemo />
+        </main>
+      </div>
+    )
+  },
+  {
+    path: '/gemini',
+    element: (
+      <div className="app-container">
+        <nav className="navigation">
+          <h1>Tiptap Editor Examples</h1>
+          <ul className="nav-list">
+            <li><Link to="/simple">Simple Editor</Link></li>
+            <li><Link to="/markdown">Markdown Editor</Link></li>
+            <li><Link to="/gemini">Gemini API Test</Link></li>
+          </ul>
+        </nav>
+        <main className="main-content">
+          <GeminiTest />
         </main>
       </div>
     )
@@ -69,6 +91,7 @@ const routerConfig = [
           <ul className="nav-list">
             <li><Link to="/simple">Simple Editor</Link></li>
             <li><Link to="/markdown">Markdown Editor</Link></li>
+            <li><Link to="/gemini">Gemini API Test</Link></li>
           </ul>
         </nav>
         <main className="main-content">
