@@ -51,10 +51,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:lib": "vite build --mode lib",
     "build:types": "tsc --project tsconfig.build.json",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build:lib"
   },
   "peerDependencies": {
     "@tiptap/core": "^3.13.0",
