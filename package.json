@@ -55,7 +55,9 @@
     "build:types": "tsc --project tsconfig.build.json",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepublishOnly": "pnpm run build:lib"
+    "prepublishOnly": "pnpm run build:lib",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel"
   },
   "peerDependencies": {
     "@tiptap/core": "^3.13.0",

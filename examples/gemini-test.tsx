@@ -262,46 +262,68 @@ const GeminiTest: React.FC = () => {
     }
   }
 
+  const modeLabels: Record<TestMode, string> = {
+    text: "文本生成",
+    stream: "流式生成",
+    "image-gen": "图片生成",
+    "image-understand": "图像理解",
+    function: "函数调用",
+    embedding: "文本嵌入",
+  }
+
   return (
     <div className="gemini-test-container">
-      <h1>Gemini API 测试</h1>
-
-      <div className="test-section">
-        <h2>API 配置</h2>
-        <div className="config-info">
-          <p>
-            <strong>API Key:</strong> {GEMINI_API_KEY.slice(0, 20)}...
-          </p>
-          <p>
-            <strong>SDK:</strong> @google/genai
-          </p>
-          <p>
-            <strong>当前模型:</strong> {model}
-          </p>
-          <p>
-            <strong>测试模式:</strong> {testMode}
-          </p>
+      {/* API 配置卡片 */}
+      <div className="config-card">
+        <div className="config-header">
+          <div className="config-icon">⚙️</div>
+          <h2>API 配置</h2>
         </div>
+        <div className="config-grid">
+          <div className="config-item">
+            <span className="config-label">API Key</span>
+            <span className="config-value">{GEMINI_API_KEY.slice(0, 20)}...</span>
+          </div>
+          <div className="config-item">
+            <span className="config-label">SDK</span>
+            <span className="config-value">@google/genai</span>
+          </div>
+          <div className="config-item">
+            <span className="config-label">当前模型</span>
+            <span className="config-value model-badge">{model}</span>
+          </div>
+          <div className="config-item">
+            <span className="config-label">测试模式</span>
+            <span className="config-value mode-badge">{modeLabels[testMode]}</span>
+          </div>
+        </div>
+      </div>
 
-        <div className="model-selector">
-          <label htmlFor="model-select">选择模型：</label>
+      {/* 控制面板 */}
+      <div className="control-panel">
+        <div className="control-group">
+          <label className="control-label">
+            <span className="label-icon">🤖</span>
+            选择模型
+          </label>
           <select
-            id="model-select"
             value={model}
             onChange={(e) => setModel(e.target.value)}
-            className="model-select"
+            className="control-select"
           >
             <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
           </select>
         </div>
 
-        <div className="model-selector">
-          <label htmlFor="mode-select">测试模式：</label>
+        <div className="control-group">
+          <label className="control-label">
+            <span className="label-icon">🎯</span>
+            测试模式
+          </label>
           <select
-            id="mode-select"
             value={testMode}
             onChange={(e) => setTestMode(e.target.value as TestMode)}
-            className="model-select"
+            className="control-select"
           >
             <option value="text">文本生成</option>
             <option value="stream">流式生成</option>
@@ -313,68 +335,103 @@ const GeminiTest: React.FC = () => {
         </div>
       </div>
 
-      <div className="test-section">
-        <h2>测试输入</h2>
-
+      {/* 输入区域 */}
+      <div className="input-section">
         {testMode === "image-understand" && (
-          <div className="file-input-group">
-            <label htmlFor="image-file">上传图片：</label>
-            <input
-              id="image-file"
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-            />
-            {imageFile && <p className="file-name">已选择: {imageFile.name}</p>}
+          <div className="file-upload-area">
+            <label className="file-label">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+                className="file-input"
+              />
+              <div className="file-button">
+                <span className="file-icon">📷</span>
+                {imageFile ? (
+                  <span className="file-name">{imageFile.name}</span>
+                ) : (
+                  <span>上传图片</span>
+                )}
+              </div>
+            </label>
           </div>
         )}
 
-        <textarea
-          className="prompt-input"
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder={
-            testMode === "image-gen"
-              ? "描述你想生成的图片，例如：Create a picture of a nano banana dish in a fancy restaurant with a Gemini theme"
-              : testMode === "image-understand"
-                ? "描述你想了解图片的什么内容"
-                : testMode === "function"
-                  ? "询问天气，例如：波士顿今天天气如何？"
-                  : "输入你的提示词，例如：写一首关于 AI 的诗"
-          }
-          rows={5}
-        />
-
-        <div className="button-group">
-          <button className="test-button" onClick={handleTest} disabled={loading}>
-            {loading ? "请求中..." : "开始测试"}
-          </button>
+        <div className="input-wrapper">
+          <textarea
+            className="prompt-input"
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            placeholder={
+              testMode === "image-gen"
+                ? "描述你想生成的图片，例如：Create a picture of a nano banana dish in a fancy restaurant with a Gemini theme"
+                : testMode === "image-understand"
+                  ? "描述你想了解图片的什么内容"
+                  : testMode === "function"
+                    ? "询问天气，例如：波士顿今天天气如何？"
+                    : "输入你的提示词，例如：写一首关于 AI 的诗"
+            }
+            rows={6}
+          />
+          <div className="input-footer">
+            <span className="input-hint">💡 输入提示词后点击开始测试</span>
+            <button 
+              className="test-button" 
+              onClick={handleTest} 
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <span className="loading-spinner"></span>
+                  请求中...
+                </>
+              ) : (
+                <>
+                  <span>🚀</span>
+                  开始测试
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
+      {/* 错误提示 */}
       {error && (
-        <div className="test-section error-section">
-          <h2>错误信息</h2>
-          <pre className="error-message">{error}</pre>
+        <div className="result-card error-card">
+          <div className="result-header">
+            <span className="result-icon">❌</span>
+            <h3>错误信息</h3>
+          </div>
+          <div className="result-content error-content">{error}</div>
         </div>
       )}
 
+      {/* 响应结果 */}
       {response && (
-        <div className="test-section response-section">
-          <h2>响应结果</h2>
-          <div className="response-content">
+        <div className="result-card success-card">
+          <div className="result-header">
+            <span className="result-icon">✅</span>
+            <h3>响应结果</h3>
+          </div>
+          <div className="result-content">
             {testMode === "image-gen" && response.includes("data:image") ? (
               <>
                 {response.split("\n\n").map((section, idx) => {
                   if (section.startsWith("生成的图片:")) {
                     const imageUrl = section.replace("生成的图片:\n", "")
-                    return <img key={idx} src={imageUrl} alt="Generated" style={{ maxWidth: "100%", marginTop: "10px" }} />
+                    return (
+                      <div key={idx} className="generated-image">
+                        <img src={imageUrl} alt="Generated" />
+                      </div>
+                    )
                   }
-                  return section ? <pre key={idx}>{section}</pre> : null
+                  return section ? <pre key={idx} className="response-text">{section}</pre> : null
                 })}
               </>
             ) : (
-              <pre>{response}</pre>
+              <pre className="response-text">{response}</pre>
             )}
           </div>
         </div>
