@@ -32,13 +32,13 @@ function Layout({ children }: { children: React.ReactNode }) {
               <span className="nav-icon">📄</span>
               <span>Markdown 编辑器</span>
             </Link>
-            <Link 
+            {/* <Link 
               to="/gemini" 
               className={location.pathname === '/gemini' ? 'nav-link active' : 'nav-link'}
             >
               <span className="nav-icon">🤖</span>
               <span>AI 助手</span>
-            </Link>
+            </Link> */}
             {/* 外部链接：GitHub */}
             <a
               href="https://github.com/chenglu1/tiptap-editor"

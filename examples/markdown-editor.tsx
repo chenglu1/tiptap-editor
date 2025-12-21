@@ -209,7 +209,7 @@ const MarkdownEditorDemo = () => {
                     isMobile={isMobile}
                   />
                 </Toolbar>
-                <EditorContent editor={editor} />
+                <EditorContent editor={editor} className="tiptap" />
                  {/* 集成表格浮动工具栏 */}
               <TableFloatingToolbar editor={editor} />
               </EditorContext.Provider>
