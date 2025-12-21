@@ -39,6 +39,16 @@ function Layout({ children }: { children: React.ReactNode }) {
               <span className="nav-icon">🤖</span>
               <span>AI 助手</span>
             </Link>
+            {/* 外部链接：GitHub */}
+            <a
+              href="https://github.com/chenglu1/tiptap-editor"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-link"
+            >
+              <span className="nav-icon">🐙</span>
+              <span>GitHub</span>
+            </a>
           </nav>
         </div>
       </header>
